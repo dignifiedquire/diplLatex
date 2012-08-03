@@ -1,0 +1,4 @@
+diplLatex
+=========
+
+Diplomarbeit Vorlage Latex
