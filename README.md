@@ -1,6 +1,9 @@
 diplLatex
 =========
 
+Dies ist meine Vorlage für eine Diplomarbeit in Mathematik mit LaTex. 
+Der Kompilierungsprozess ist relativ aufwendig ermöglicht einem aber dadurch direkt inline 
+Grafiken mit `pstricks` zu erzeugen. 
 
 ## Download
 
@@ -26,3 +29,5 @@ Kompilieren `tex` nach `dvi` nach `ps` nach `pdf`
 $ latex main.tex && dvips -Ppdf main.dvi -o && ps2pdf main.ps
 ```
 
+## Todo
+* Beispiele einfügen
