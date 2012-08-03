@@ -12,7 +12,7 @@ Per Git
 ```bash
 $ git clone https://github.com/Dignifiedquire/diplLatex.git
 ```
-oder einfach [Zip Download](https://github.com/Dignifiedquire/diplLatex/zipball/master)
+oder einfach als [Zip Download](https://github.com/Dignifiedquire/diplLatex/zipball/master).
 
 
 ## Verwendung
