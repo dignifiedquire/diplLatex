@@ -1,0 +1,496 @@
+%==============================================================================
+%==============================================================================
+%
+% LaTex Header für diplLatex - eine Diplomarbeit in Latex
+% Copyright Friedel Ziegelmayer
+% basierend auf einer Vorlage aus der Arbeit 'Diplomarbeit mit LaTex'
+% 27. Juni 2010
+% letzte Änderungen 03.08.2012
+%
+% Diese Datei ist Teil des gesamt Paktes diplLatex.
+% Zu Verwendung in die Hauptdatei diese Datei mit \include{header} einbinden
+% 
+%==============================================================================
+%==============================================================================
+
+
+
+% Definition der 'documentclass' 
+% steht immer zu Beginn einer Datei
+
+\documentclass%
+[%
+%  pdftex,%              PDFTex verwenden da ausschliesslich pdf-files erzeugt werden.
+  a4paper,%             Verwendung von A4=Papier
+  twoside,%             Zweiseitiger Druck
+  11pt,%                Einstellen der Schriftgröße
+  halfparskip,%         Halber Zeilenbstand zwischen Absätzen.
+  ngerman,%             Deutsche Sprache
+  % chapterprefix,%     Kapitel mit 'Kapitel' anschreiben.
+  % bibtotocnumbered,%  Literaturverzeichnis im Inhaltsverzeichnis nummeriert einfügen.
+  % idxtotoc%           Index ins Inhaltsverzeichnis einfügen.
+]{scrreprt}%
+
+%==============================================================================
+%		Paketeinbindungen Schrift und Aussehen
+%==============================================================================
+
+% fontencoding festlegen (T1 i.A. die einzig sinnvolle Option für LaTex)
+% d.h. dies ist die Kodierung für den Output
+\usepackage[T1]{fontenc}
+
+% inputencoding festlegen 
+% (Standard ist 'latin1', unter Apple kann 'applemac' vorkommen, 'utf8' wird 
+% verwendet für möglichst sauberen Austausch
+% zwischen Dateisystemen)
+% d.h. dies ist die Kodierung der .tex Dateien und kann durchaus varieren
+\usepackage[utf8]{inputenc}
+
+% mit diesem Paket werden die Rechschreibregeln für Wortrennung o.ä. festgelegt
+% 'ngerman' entspricht der Neuen Deutschen Rechtschreibung, wohingegen 'german'
+% für die Alte verwendet wird 
+\usepackage[ngerman]{babel} 
+
+% Paket zur Spezifizierung der Anführungszeichen
+\usepackage[style=swiss]{csquotes}
+
+% Benutze die Schriftfamilie 'helvet
+\usepackage{helvet} 
+ 
+% Paket zum Einstellen der Abstände zwischen den Zeilen
+% Optionen sind 'singlespacing' 'onehalfspacing' und 'doublespacing'
+\usepackage[onehalfspacing]{setspace} 
+
+% Paket zum Einden von Grafiken '\includegraphics{}' und weiteren graphischen 
+% Einstellungen 
+\usepackage{graphicx}
+\usepackage{subfigure}
+
+ 
+% Pakte um Farben verwenden zu können 
+\usepackage[usenames]{color} 
+
+% Pakete um Grafiken erzeugen zu können
+\usepackage{pst-plot}
+\usepackage{pstricks}
+
+
+% Paket zur Quellcodeformatierung in LaTex, für die Verwendung siehe die 
+% Paketdokumentation 
+\usepackage{listings}
+
+% Paket zur schnellen Änderung von 'enumerate'
+% Verwendung: 
+% \begin{enumerate}[label=<your label>]
+%	\item
+%	..
+%	\item
+%  \end{enumerate}
+%
+% für <your label> schreibe die gewünschte Nummerierung wie z.B. '(\arabic*)'
+% um (1), (2), usw. zu erhalten
+\usepackage{enumitem}
+
+% Paket zum erstellen eines Anhangs
+\usepackage{appendix}
+
+\usepackage{titlesec}
+
+% Paket zur einfachen Anpassung der Kopf- und Fußzeilen
+% Siehe weiter unten zur Verwendung 
+\usepackage{fancyhdr}
+
+% Paket zur genauen Defnition der einzelnen Größen im Layout des Dokuments
+% siehe weiter unten '\geometry' wo die konkreten Einstellungen vorgenommen werden
+\usepackage{geometry}
+
+\usepackage{makeidx}
+
+% Paket zum Anzeigen der gesamt Seitenzahl '\pageref{lastpage}'
+\usepackage{lastpage}
+
+
+
+% Paket hyperref für genauere Einstellungen der PDF Erstellung
+\usepackage[%
+  pdftitle={Das Skorokhod Einbettungs Problem und Hedging von Double
+  Barrier Optionen},%                           Titel des PDF Dokuments.
+  pdfauthor={Friedel Ziegelmayer},%             Autor des PDF Dokuments.
+  pdfsubject={LaTex},%                    	Thema des PDF Dokuments.
+  pdfcreator={LaTeX with hyperref},% 		Erzeuger des PDF Dokuments.
+  pdfkeywords={},%                        	auch für PDF Dokumente indexiert.
+  pdfpagemode=UseOutlines,%                     Inhaltsverzeichnis anzeigen beim Öffnen
+  pdfdisplaydoctitle=true,%                     Dokumenttitel statt Dateiname anzeigen.
+  pdflang=de%                                   Sprache des Dokuments.
+  pdfstartview={FitH}%			        Startanzeigeneinstellung
+]{hyperref}
+
+% Pakete für mehr Verweise
+\usepackage{
+  nameref,      % \nameref
+  cleveref,     % \cref   cleveref after! hyperref
+}
+
+% Pakte um Counterproblem mit hyperref zu umgehen
+\usepackage{aliascnt}
+ 
+%==============================================================================
+%				Paketeinbindungen mathematische Pakte
+%==============================================================================
+
+
+% Paket für mehr spaltige Formeln
+%\usepackage{mhequ} 
+
+% Standardpaket zur Erweiterung der Umgebungen 'array' und 'tabular' zum 
+% Erstellen von tabellenähnlichen Strukturen
+\usepackage{array} 
+
+% Standardpaket zur Verbesserung des mathematischen Zeichensatzes
+\usepackage{amsmath}
+
+% Paket für den mathematischen Textsatz zur Erweiterung und Verbesserung von 
+% amsmath
+\usepackage{mathtools}
+
+% Paket zur Darstellung von Theoremstyles 
+% Definition & Verwendung wird weiter unten vorgenommen
+\usepackage{amsthm}
+
+
+
+
+% Paket zur Darstellung der doppelt gestrichenen Buchstaben 
+% (Natürliche Zahlen usw.)
+\usepackage{dsfont}
+
+% verschiedene Pakte für zusätzliche Sonderzeichen und mathematische Symbole
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{bbding}
+\usepackage{wasysym}
+
+% glossaries wird benutzt umd Indexe zu erstellen
+\usepackage[toc]{glossaries}
+\makeglossaries
+
+
+
+
+%==============================================================================
+%				Einstellungen Schrift und Aussehen
+%==============================================================================
+
+
+
+% Einstellen verschiedener Großen, wie Textbreite, Texthöhe usw.
+% für alle Optionen siehe Paketdokumentation 'geometry'
+\geometry{%
+	outer=35mm, 
+	inner=30mm, 
+	top=35mm, 
+	bottom=35mm,
+	textwidth=145mm, 
+	textheight=220mm, 
+	marginparsep=3mm, 
+	pdftex}
+
+% Definiere die Farbe für Links z.B. im Inhaltsverzeichnis
+\definecolor{LinkColor}{rgb}{0,0,0.5}
+
+% weitere Definitionen zum Aussehen und der Verwendung von Links 
+\hypersetup{%
+	colorlinks=true,%        Aktivieren von farbigen Links im Dokument (keine Rahmen)
+	linkcolor=LinkColor,%    Farbe festlegen.
+	citecolor=LinkColor,%    Farbe festlegen.
+	filecolor=LinkColor,%    Farbe festlegen.
+	menucolor=LinkColor,%    Farbe festlegen.
+	urlcolor=LinkColor,%     Farbe von URL's im Dokument.
+	bookmarksnumbered=true%  Überschriftsnummerierung im PDF Inhalt anzeigen.
+}
+
+ 
+% Definition der Counter für die Abschnittsnummerierung
+
+% I Chapter
+\renewcommand \thechapter {\Roman{chapter}}
+% 1 Section 
+\renewcommand \thesection {\arabic{section}}
+% §1 Subsection
+\renewcommand \thesubsection {\arabic{section}.\arabic{subsection}}
+% §1 Subsection.1 Subsubsection
+\renewcommand \thesubsubsection {§\arabic{subsubsection}}
+
+
+% Definition der Schriften für die Überschriften 
+\setkomafont{chapter}{\LARGE\bf}
+\setkomafont{section}{\Large\bf}		
+\setkomafont{subsection}{\large\bf}
+
+% Setze die Anzahl der Unternummerierungen die möglich sind (z.B. 1.2.1.)
+\setcounter{secnumdepth}{3}
+
+\renewcommand{\theequation}{\arabic{equation}}
+
+% Laden der Bibliographie
+\usepackage[style=numeric,subentry]{biblatex}
+% Lade alle BibTexeinträge unabhängig davon ob sie referenziert werden
+% oder nicht
+\nocite{*}
+\bibliography{bib/cites.bib}
+
+
+
+%==============================================================================
+%		Einstellungen für Kopf- und Fußzeilen mit fancyhdr
+%==============================================================================
+
+% Definiere einen pagestyle 'fancy'
+\pagestyle{fancy}
+	
+	% Setze alles zurück	
+	\fancyhf{}
+	 
+	% Chapter wird nur in den  Dokumentklassen 'book' and 'report' verwendet 
+	\renewcommand{\chaptermark}[1]{%
+		\markboth{\chaptername \ \thechapter.\ #1%		
+		}{}}
+	
+	\renewcommand{\sectionmark}[1]{%
+		\markboth{#1 %
+		}{}}
+	\renewcommand{\subsectionmark}[1]{% 
+		\markright{#1 %
+		}{}} 
+	
+	% Definiere ob und wenn ja wie stark die Linien vor bzw. nach Kopf- 
+        % und Fußzeile sind
+	\renewcommand{\headrulewidth}{.5pt} 
+	\renewcommand{\footrulewidth}{.5pt}
+	
+	% Einstellen der eigentlichen Information für die Kopfzeile
+	\fancyhead[LE,RO]{\footnotesize{}}
+	\fancyhead[CO]{\footnotesize{\rightmark}}
+        \fancyhead[CE]{\footnotesize{\leftmark}}
+	\fancyhead[RE,LO]{\footnotesize{}}
+	 
+	% Einstellen der eigentlichen Information für die Fußzeile
+	\fancyfoot[LE,RO]{\footnotesize{}
+	\fancyfoot[CE,CO]{\footnotesize{\thepage\,von \pageref{LastPage}}}}
+	\fancyfoot[RE,LO]{\footnotesize{}}
+
+
+
+
+
+
+
+%==============================================================================
+%                     Definieren eigener Befehle
+%==============================================================================
+
+% Definiere den Befehl '\HRule' um eine 0.3mm dicke Haarline zeichnen zu können
+\newcommand{\HRule}{\rule{\linewidth}{0.3mm}}
+
+
+% Definiere die standardmäßig verwendeten mathematischen Zahlensymbole
+%  (Verwendung des Paktes dsfonts) 
+\DeclareMathOperator{\N}{\mathds{N}}			% natürliche Zahlen |N
+\DeclareMathOperator{\No}{\mathds{N}\setminus\{0\}}	% natürliche Zahlen |N ohne die Null
+\DeclareMathOperator{\Z}{\mathds{Z}}			% ganze Zahlen |Z
+\DeclareMathOperator{\Q}{\mathds{Q}}			% rationale Zahlen |Q
+\DeclareMathOperator{\R}{\mathds{R}}			% reelle Zahlen |R
+\DeclareMathOperator{\C}{\mathds{C}}			% komplexe Zahlen |C
+\DeclareMathOperator{\Hq}{\mathds{H}}			% Quaterninonen |H
+\DeclareMathOperator{\F}{\mathds{F}}			% |F
+\DeclareMathOperator{\LL}{\mathds{L}}			% |L
+\DeclareMathOperator{\kk}{\mathds{k}}			% |k
+\DeclareMathOperator{\PP}{\mathds{P}}			% |P
+\DeclareMathOperator{\E}{\mathds{E}}			% |E
+
+
+
+% Definition der mathematischen Operatoren für geschwungene Buchstaben
+
+\DeclareMathOperator{\Aa}{\mathcal{A}}
+\DeclareMathOperator{\Bb}{\mathcal{B}}
+\DeclareMathOperator{\Cc}{\mathcal{C}}
+\DeclareMathOperator{\Dd}{\mathcal{D}}
+\DeclareMathOperator{\Ee}{\mathcal{E}}
+\DeclareMathOperator{\Ff}{\mathcal{F}}
+\DeclareMathOperator{\Gg}{\mathcal{G}}
+\DeclareMathOperator{\Hh}{\mathcal{H}}
+\DeclareMathOperator{\Ii}{\mathcal{I}}
+\DeclareMathOperator{\Jj}{\mathcal{J}}
+\DeclareMathOperator{\Kk}{\mathcal{K}}
+\DeclareMathOperator{\Ll}{\mathcal{L}}
+\DeclareMathOperator{\Mm}{\mathcal{M}}
+\DeclareMathOperator{\Nn}{\mathcal{N}}
+\DeclareMathOperator{\Oo}{\mathcal{O}}
+\DeclareMathOperator{\Pp}{\mathcal{P}}
+\DeclareMathOperator{\Qq}{\mathcal{Q}}
+\DeclareMathOperator{\Rr}{\mathcal{R}}
+\DeclareMathOperator{\Ss}{\mathcal{S}}
+\DeclareMathOperator{\Tt}{\mathcal{T}}
+\DeclareMathOperator{\Uu}{\mathcal{U}}
+\DeclareMathOperator{\Vv}{\mathcal{V}}
+\DeclareMathOperator{\Ww}{\mathcal{W}}
+\DeclareMathOperator{\Xx}{\mathcal{X}}
+\DeclareMathOperator{\Yy}{\mathcal{Y}}
+\DeclareMathOperator{\Zz}{\mathcal{Z}}
+
+% mathematischer Operator für Indikatorfunktionen mit bold-font
+%\DeclareMathOperator{\1}{\mathbf{1}}
+
+% mathematischer Operator für Indikatorfunktionen mit doppel Strich
+\DeclareMathOperator{\I1}{\mathds{1}}
+
+% verschiedene andere mathematische Operatoren 
+\DeclareMathOperator{\Lp}{L}
+\DeclareMathOperator{\Det}{det}
+\DeclareMathOperator{\Map}{Map}
+\DeclareMathOperator{\Mult}{Mult}
+\DeclareMathOperator{\Alt}{Alt}
+\DeclareMathOperator{\Mat}{Mat}
+\DeclareMathOperator{\sgn}{sign}
+\DeclareMathOperator{\Gl}{GL}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\Bij}{Bij}
+\DeclareMathOperator{\leit}{\textit{l}}
+\DeclareMathOperator{\RT}{\mathnormal{R[T]}}
+\DeclareMathOperator{\ggT}{ggT}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Invten}{Invten}
+\DeclareMathOperator{\Id}{id}
+\DeclareMathOperator{\cha}{char}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Bil}{Bil}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Orth}{O}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\Sp}{Sp}
+\DeclareMathOperator{\sk}{\mathnormal{\langle\, ,\,\rangle}}
+\DeclareMathOperator{\SU}{SU}
+\DeclareMathOperator{\Un}{U}
+\DeclareMathOperator{\supp}{supp}
+
+\DeclareMathOperator{\argmax}{\text{arg max}}
+\DeclareMathOperator{\argmin}{\text{arg min}}
+\DeclareMathOperator{\arginf}{\text{arg inf}}
+\DeclareMathOperator{\argsup}{\text{arg sup}}
+
+
+%==============================================================================
+%				Einstellungen der theoremstyles
+%==============================================================================
+
+% Schreibe die Nummerierung vor die Bezeichnung
+% 1.2 Satz. statt Satz 2.1. 
+%\swapnumbers
+
+% Standard theoremstyle für Sätze, Lemmata, usw.
+\newtheoremstyle{plainn}% 	Name
+{1.5pt}%      			Abstand zur Vorzeile (leer = default Wert)
+{1.5pt}%      			Abstand zur Folgezeile
+{\itshape}% 			Schriftart Body
+{}%         			Einzug (leer = kein Einzug, \parindent = paragraph Einzug)
+{\bfseries}% 			Schriftart Überschrift
+{.}%        			Zeichen nach der Überschrift
+{.5em}%     			Platz nach der Überschrift (\newline ruft einen Zeilenumbruch hervor)        							
+{}% 				Thm head spec
+
+% theoremstyle für Anmerkungen
+\newtheoremstyle{anmerkung}% 	Name
+{1.5pt}%      			Abstand zur Vorzeile (leer = default Wert)
+{1.5pt}%      			Abstand zur Folgezeile
+{}% 				Schriftart Body
+{}%         			Einzug (leer = kein Einzug, \parindent = paragraph Einzug)
+{}%	 			Schriftart Überschrift
+{.}%        			Zeichen nach der Überschrift
+{}%     			Platz nach der Überschrift (\newline ruft einen Zeilenumbruch hervor)        							
+{}% 				Thm head spec
+
+
+% Zuweisung der theoremstyles zu den einzelnen Umgebungen
+% Umgebungen mit * sind unnummeriert
+
+
+\addto\extrasngerman{%
+  \def\satzautorefname{Satz}
+  \def\lemmaautorefname{Lemma}  
+  \def\theoremautorefname{Theorem}
+  \def\korollarautorefname{Korollar}
+  \def\propositionautorefname{Proposition}
+  \def\beispielname{Beispiel}
+  \def\definitionautorefname{Definition}
+  \def\bemerkungautorefname{Bemerkung}
+  \def\problemautorefname{Problem}
+}
+
+\theoremstyle{plainn}
+  % verwende die Nummerierung von 'subsection' zusätzlich zur normalen Nummerierung
+  \newtheorem{satz}{Satz}[section]
+  \newtheorem*{satz*}{Satz}
+  
+  
+  % verwende die selbe Nummerierung wie 'satz'
+  \newaliascnt{lemma}{satz}
+  \newtheorem{lem}[lemma]{Lemma}
+  \newtheorem*{lem*}{Lemma}
+
+  % verwende die selbe Nummerierung wie 'satz'
+  \newaliascnt{theorem}{satz}
+  \newtheorem{theorem}[theorem]{Theorem}
+  \newtheorem*{theorem*}{Theorem}
+
+  % verwende die selbe Nummerierung wie 'satz'
+  \newaliascnt{korollar}{satz}
+  \newtheorem{kor}[korollar]{Korollar}
+  \newtheorem*{kor*}{Korollar}	
+
+  % verwende die selbe Nummerierung wie 'satz'
+  \newaliascnt{proposition}{satz}  
+  \newtheorem{prop}[proposition]{Proposition}
+  \newtheorem*{prop*}{Proposition}
+
+  % verwende die selbe Nummerierung wie 'satz'
+  \newaliascnt{problem}{satz}  
+  \newtheorem{prob}[problem]{Problem}
+  \newtheorem*{prob*}{Problem}
+
+
+\theoremstyle{definition}
+  % verwende die selbe Nummerierung wie 'satz'
+  \newaliascnt{beispiel}{satz}
+  \newtheorem{bsp}[beispiel]{Beispiel}
+  \newtheorem*{bsp*}{Beispiel}   
+
+  % verwende die selbe Nummerierung wie 'satz'
+  \newaliascnt{definition}{satz}
+  \newtheorem{Def}[definition]{Definition}
+  \newtheorem*{Def*}{Definition}
+
+  % verwende die selbe Nummerierung wie 'satz'
+  \newaliascnt{bemerkung}{satz}
+  \newtheorem{bem}[bemerkung]{Bemerkung}
+  \newtheorem*{bem*}{Bemerkung}
+
+
+\theoremstyle{remark} 
+  \newtheorem*{bew*}{Beweis}
+
+
+% spezielle Umgebung um eine 'leere Umgebung zu haben'
+\theoremstyle{anmerkung}
+  \newtheorem*{anm}{ }
+
+
+
+%==============================================================================
+%==============================================================================
+%				Ende des Headers
+%==============================================================================
+%==============================================================================

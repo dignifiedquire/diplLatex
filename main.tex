@@ -1,0 +1,50 @@
+%==============================================================================
+%==============================================================================
+%
+% LaTex Header für diplLatex - eine Diplomarbeit in Latex
+% Copyright Friedel Ziegelmayer
+% basierend auf einer Vorlage aus der Arbeit 'Diplomarbeit mit LaTex'
+% 27. Juni 2010
+% letzte Änderungen 03.08.2012
+%
+% Diese Datei ist Teil des gesamt Paktes diplLatex.
+% Es ist die Hauptdatei die alle weiteren Dateien lädt
+% 
+%==============================================================================
+%==============================================================================
+
+
+
+% Einfügen des Headers
+\input{chapters/header}
+
+% Einfügen des Notationsglossars
+\input{bib/notation}
+
+
+\begin{document}
+
+  % Front Seite einfügen
+  \input{chapters/title}
+
+  % Inhaltsverzeichnis erzeugen
+  \tableofcontents
+  
+
+  % Einfügen der Kapitel
+  \input{chapters/chapter01}
+
+
+  % Beginn des Anhangs
+  \appendix
+  
+  % Glossare erzeugen
+  \printglossaries
+  
+  
+
+  % Bibliographie erzeugen
+  \printbibliography
+
+
+\end{document}
